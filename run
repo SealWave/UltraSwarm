@@ -1,0 +1,15 @@
+#!/bin/bash
+# UltraSwarm Main CLI - Easy startup script
+
+cd "$(dirname "$0")" || exit 1
+
+# Check if venv exists
+if [ ! -d ".venv" ]; then
+    echo "❌ Virtual environment not found. Please run setup first:"
+    echo "  python -m venv .venv"
+    echo "  .venv/bin/pip install -r requirements.txt"
+    exit 1
+fi
+
+# Run with venv python
+exec .venv/bin/python main.py "$@"

@@ -1,0 +1,9 @@
+{
+  "name": "browser_search_input",
+  "description": "Locate and fill a website's search input even if placed unusually in the layout.",
+  "find_hint": "search",
+  "action": "fill",
+  "examples": [
+    { "hint": "Search", "usage": "Find the search box and type the query" }
+  ]
+}

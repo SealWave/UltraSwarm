@@ -1,0 +1,154 @@
+{
+  "supreme_orchestrator": {
+    "class_name": "OrchestratorAgent",
+    "name": "supreme_orchestrator",
+    "role": "manager",
+    "description": "APEX — Supreme Orchestrator of UltraSwarm. Controls all agents across outreach, ecommerce, fiverr, external, helpers, an",
+    "file": "agents/managers/orchestrator_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.046896"
+  },
+  "allocator_agent": {
+    "class_name": "AllocatorAgent",
+    "name": "allocator_agent",
+    "role": "manager",
+    "description": "Dispatcher agent. Given a subtask and a list of available agents, determines which agent is best suited to execute the t",
+    "file": "agents/managers/allocator_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.049646"
+  },
+  "thinking_agent": {
+    "class_name": "ThinkingAgent",
+    "name": "thinking_agent",
+    "role": "helper",
+    "description": "Cognitive decomposition agent. Receives a high-level user goal and breaks it into a structured, ordered JSON plan of sub",
+    "file": "agents/helpers/thinking_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.052563"
+  },
+  "search_agent": {
+    "class_name": "SearchAgent",
+    "name": "search_agent",
+    "role": "helper",
+    "description": "Web research agent. Given a search query or research topic, performs Google searches, reads top result pages, and return",
+    "file": "agents/helpers/search_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.054687"
+  },
+  "web_research_agent": {
+    "class_name": "WebResearchAgent",
+    "name": "web_research_agent",
+    "role": "helper",
+    "description": "Searches the web for any topic and synthesizes findings into a structured research report with summary, key facts, and c",
+    "file": "agents/external/web_research_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.060385"
+  },
+  "email_drafting_agent": {
+    "class_name": "EmailDraftingAgent",
+    "name": "email_drafting_agent",
+    "role": "worker",
+    "description": "Drafts professional emails of any type: follow-ups, outreach, proposals, confirmations, announcements, apologies. Adapts",
+    "file": "agents/external/email_drafting_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.064903"
+  },
+  "stock_research_agent": {
+    "class_name": "StockResearchAgent",
+    "name": "stock_research_agent",
+    "role": "worker",
+    "description": "Analyzes stocks and companies: financial fundamentals, investment thesis, bull/bear case, risk factors, recommendation. ",
+    "file": "agents/external/stock_research_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.069408"
+  },
+  "customer_support_agent": {
+    "class_name": "CustomerSupportAgent",
+    "name": "customer_support_agent",
+    "role": "worker",
+    "description": "Handles customer support inquiries: shipping, billing, returns, complaints, technical issues. Classifies intent and urge",
+    "file": "agents/external/customer_support_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.072834"
+  },
+  "social_media_agent": {
+    "class_name": "SocialMediaAgent",
+    "name": "social_media_agent",
+    "role": "worker",
+    "description": "Generates platform-optimized social media content for Twitter/X, LinkedIn, and Instagram from any topic. Includes hashta",
+    "file": "agents/external/social_media_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.077877"
+  },
+  "unit_test_generator_agent": {
+    "class_name": "UnitTestGeneratorAgent",
+    "name": "unit_test_generator_agent",
+    "role": "worker",
+    "description": "Generates unit tests for any function, class, or module. Supports Python (pytest/unittest) and JavaScript/TypeScript (Je",
+    "file": "agents/external/unit_test_generator_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.082159"
+  },
+  "competitive_analysis_agent": {
+    "class_name": "CompetitiveAnalysisAgent",
+    "name": "competitive_analysis_agent",
+    "role": "worker",
+    "description": "Analyzes the competitive landscape for any company or product. Identifies top competitors, profiles strengths/weaknesses",
+    "file": "agents/external/competitive_analysis_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.089584"
+  },
+  "multi_agent_debate_agent": {
+    "class_name": "MultiAgentDebateAgent",
+    "name": "multi_agent_debate_agent",
+    "role": "worker",
+    "description": "Runs a structured two-sided debate on any topic, decision, or strategy. Generates the strongest FOR and AGAINST argument",
+    "file": "agents/external/multi_agent_debate_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.095630"
+  },
+  "outreach_orchestrator": {
+    "class_name": "OrchestratorAgent",
+    "name": "outreach_orchestrator",
+    "role": "domain",
+    "description": "Top-level coordinator for the AI Outreach Swarm. Manages state transitions between Research, Strategy, Outreach, Analysi",
+    "file": "agents/outreach/orchestrator_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.103630"
+  },
+  "outreach_research_agent": {
+    "class_name": "ResearchAgent",
+    "name": "outreach_research_agent",
+    "role": "worker",
+    "description": "Profiles a named prospect (person + company) for personalised outreach. Gathers LinkedIn data, company news, pain points",
+    "file": "agents/outreach/research_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.115352"
+  },
+  "outreach_message_agent": {
+    "class_name": "OutreachAgent",
+    "name": "outreach_message_agent",
+    "role": "worker",
+    "description": "Drafts personalised outreach messages across all platforms: Email, LinkedIn, WhatsApp, Facebook, Instagram, SMS, Telegra",
+    "file": "agents/outreach/outreach_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.135909"
+  },
+  "fiverr_manager": {
+    "class_name": "FiverrManager",
+    "name": "fiverr_manager",
+    "role": "manager",
+    "description": "Domain-level orchestrator for all Fiverr automation. Accepts a user goal, decomposes it into sub-tasks, delegates to spe",
+    "file": "agents/fiverr/fiverr_manager_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.271894"
+  },
+  "gig_creation_agent": {
+    "class_name": "GigCreationAgent",
+    "name": "gig_creation_agent",
+    "role": "worker",
+    "description": "Researches in-demand Fiverr service categories via web search, generates optimised gig listings (title, description, tag",
+    "file": "agents/fiverr/gig_creation_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.285925"
+  },
+  "account_management_agent": {
+    "class_name": "AccountManagementAgent",
+    "name": "account_management_agent",
+    "role": "worker",
+    "description": "Monitors Fiverr gig performance metrics (views, clicks, orders, review scores) via browser automation, flags orders with",
+    "file": "agents/fiverr/account_management_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.299449"
+  },
+  "scraping_lead_gen_agent": {
+    "class_name": "ScrapingLeadGenAgent",
+    "name": "scraping_lead_gen_agent",
+    "role": "worker",
+    "description": "Fulfils Fiverr client orders for web scraping and lead generation. Searches for target data sources via google_search(),",
+    "file": "agents/fiverr/scraping_lead_gen_agent.py",
+    "discovered_at": "2026-07-02T22:07:19.313480"
+  }
+}

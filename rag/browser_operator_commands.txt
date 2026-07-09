@@ -1,0 +1,6 @@
+open https://store.test/laptop-1
+snapshot
+extract_product_data
+open https://store.test/laptop-2
+snapshot
+extract_product_data

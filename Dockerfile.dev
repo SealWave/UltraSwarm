@@ -1,0 +1,47 @@
+# UltraSwarm Development Dockerfile
+# Optimized for development with hot reload support
+
+FROM python:3.11-slim-bookworm
+
+LABEL maintainer="UltraSwarm Team"
+LABEL description="Development image with hot reload"
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PLAYWRIGHT_BROWSERS_PATH=/ms-playwright \
+    PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1
+
+# Install minimal dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 \
+    libcups2 libdrm2 libdbus-1-3 libxkbcommon0 \
+    libxcomposite1 libxdamage1 libxfixes3 libxrandr2 \
+    libgbm1 libasound2 libpango-1.0-0 libcairo2 \
+    fonts-liberation \
+    curl wget procps xvfb \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt \
+    && pip install watchdog watchfiles \
+    && playwright install chromium \
+    && playwright install-deps chromium
+
+# Create directories
+RUN mkdir -p /app/outputs /app/knowledge /app/agent_workspace
+
+# Development user
+RUN useradd -m -s /bin/bash swarmuser \
+    && chown -R swarmuser:swarmuser /app /ms-playwright
+
+USER swarmuser
+
+EXPOSE 9222
+
+# Default command
+CMD ["python", "main.py"]

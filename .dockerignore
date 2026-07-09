@@ -1,0 +1,79 @@
+# Docker ignore file - exclude unnecessary files from Docker build context
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+Dockerfile.*
+docker-compose*.yml
+docker-bake.hcl
+.dockerignore
+
+# Kiro
+.kiro/
+
+# Node.js (for Playwright tests)
+node_modules/
+package-lock.json
+package.json
+playwright.config.ts
+e2e/
+
+# Graphify
+graphify-out/
+
+# Outputs (will be mounted as volume)
+outputs/
+
+# Environment files (should be mounted, not copied)
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.tmp
+
+# Browser profiles
+.browser-profile/
+ms-playwright/
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/

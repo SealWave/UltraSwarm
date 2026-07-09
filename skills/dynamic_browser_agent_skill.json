@@ -1,0 +1,22 @@
+{
+  "name": "dynamic_browser_agent",
+  "description": "Use an observe-plan-act loop with Agent Browser snapshots and safe JSON actions instead of hardcoded browser scripts.",
+  "rules": [
+    "Always take or use the latest accessibility snapshot before choosing a browser action.",
+    "Choose one safe action at a time: open, snapshot, find, fill, click, wait, scroll, press, extract_product_data, note, or finish.",
+    "Use hints from labels, roles, placeholders, button text, and nearby context when refs are not known.",
+    "After any click, navigation, wait, or dynamic page change, request a fresh snapshot before using new refs.",
+    "Store useful findings in swarm memory so the next agent can continue from structured data instead of prose.",
+    "For supplier sourcing, prefer products with meaningful review/order volume and strong ratings over perfect ratings with tiny sample sizes.",
+    "For admin upload, map product data to fields by meaning, not by fixed page order."
+  ],
+  "safe_action_schema": {
+    "open": {"action": "open", "url": "https://example.com"},
+    "find": {"action": "find", "hint": "search", "key": "search_box"},
+    "fill": {"action": "fill", "hint": "product title", "text": "Product Name"},
+    "fill_from_memory": {"action": "fill", "hint": "password", "text_from": "admin_credentials.password_value"},
+    "click": {"action": "click", "hint": "save"},
+    "extract": {"action": "extract_product_data"},
+    "finish": {"action": "finish"}
+  }
+}

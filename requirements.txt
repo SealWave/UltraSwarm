@@ -1,0 +1,16 @@
+google-generativeai
+openai
+requests
+rich
+python-dotenv
+Pillow
+aiohttp
+colorama
+pyfiglet
+git+https://github.com/openai/swarm.git
+browser-use
+langchain
+langchain-google-genai
+turbovec
+typer[all]
+shellingham

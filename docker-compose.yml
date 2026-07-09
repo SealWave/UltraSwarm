@@ -1,0 +1,127 @@
+version: '3.8'
+
+services:
+  # Main UltraSwarm application
+  ultraswarm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - TARGETPLATFORM=${TARGETPLATFORM:-linux/amd64}
+        - BUILDPLATFORM=${BUILDPLATFORM:-linux/amd64}
+    
+    image: ultraswarm:latest
+    container_name: ultraswarm-agent
+    
+    # Environment configuration
+    environment:
+      # LLM Configuration (required)
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-2.5-flash}
+      
+      # Local LLM (optional - uncomment if using local LLM)
+      # - USE_LOCAL_LLM=${USE_LOCAL_LLM:-false}
+      # - LOCAL_LLM_URL=${LOCAL_LLM_URL:-http://host.docker.internal:1234/v1}
+      # - LOCAL_MODEL_NAME=${LOCAL_MODEL_NAME:-liquid/lfm2.5-1.2b}
+      
+      # Browser Configuration
+      - BROWSER_HEADLESS=${BROWSER_HEADLESS:-true}
+      - BROWSER_USE_AUTO_START=${BROWSER_USE_AUTO_START:-true}
+      - BROWSER_USE_CLOUD=${BROWSER_USE_CLOUD:-false}
+      - BROWSER_USE_CDP_PORT=${BROWSER_USE_CDP_PORT:-9222}
+      
+      # Playwright Configuration for Arch Linux compatibility
+      - PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+      
+      # Store Configuration (optional)
+      - STORE_URL=${STORE_URL:-}
+      - STORE_NICHE=${STORE_NICHE:-}
+      
+      # Agent Configuration
+      - MAX_TOKENS=${MAX_TOKENS:-8192}
+      - AGENT_TEMPERATURE=${AGENT_TEMPERATURE:-0.7}
+    
+    # Volume mounts for persistence
+    volumes:
+      # Output directory - persists agent results
+      - ./outputs:/app/outputs
+      # Knowledge base - persists RAG documents
+      - ./knowledge:/app/knowledge
+      # Agent workspace - persists agent state
+      - ./agent_workspace:/app/agent_workspace
+      # Browser profile (optional - for persistent sessions)
+      - browser-profile:/app/.browser-profile
+      # Environment file
+      - ./.env:/app/.env:ro
+    
+    # Port mapping for browser CDP (optional)
+    ports:
+      - "9222:9222"
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 8G
+        reservations:
+          cpus: '1'
+          memory: 2G
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    
+    # For browser automation with headless mode
+    # Uncomment if you need display for non-headless mode
+    # shm_size: '2gb'
+
+  # Optional: Development mode with hot reload
+  ultraswarm-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: ultraswarm:dev
+    container_name: ultraswarm-dev
+    
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - BROWSER_HEADLESS=true
+      - PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1
+    
+    volumes:
+      - .:/app
+      - browser-profile:/app/.browser-profile
+      - ./outputs:/app/outputs
+      - ./knowledge:/app/knowledge
+    
+    ports:
+      - "9223:9222"
+    
+    command: ["python", "-m", "http.server", "8000"]
+    
+    profiles:
+      - dev
+
+  # Optional: Local LLM proxy (for LM Studio/Ollama)
+  # Uncomment if using local LLM with Docker Desktop
+  # llm-proxy:
+  #   image: alpine/socat
+  #   container_name: llm-proxy
+  #   command: TCP-LISTEN:1234,fork TCP:host.docker.internal:1234
+  #   ports:
+  #     - "1234:1234"
+  #   profiles:
+  #     - local-llm
+
+volumes:
+  browser-profile:
+    driver: local
+
+networks:
+  default:
+    name: ultraswarm-network

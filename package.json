@@ -1,0 +1,18 @@
+{
+  "name": "ultraswarm-main",
+  "version": "1.0.0",
+  "description": "**A scalable multi-agent swarm for e-commerce automation** Built for Windows & Termux | Powered by Gemini 2.5 Flash (Free) Browsing Powered by: **browser-use** with **DuckDuckGo** search",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1"
+  }
+}
